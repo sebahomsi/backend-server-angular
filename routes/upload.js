@@ -103,14 +103,24 @@ function subirPorTipo(tipo, id, nombreArchivo, res) {
 
             if (!usuario) {
                 return res.status(400).json({
-                    ok: true,
+                    ok: false,
                     mensaje: 'Usuario no existe',
                     errors: { message: 'Usuario no existe' }
                 });
             }
 
+            if (!nombreArchivo) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'No llegó',
+                    nombreArchivo
+                });
+            }
 
-            var pathViejo = './uploads/usuarios/' + usuario.img;
+
+
+
+            var pathViejo = '../uploads/usuarios/' + usuario.img;
 
             // Si existe, elimina la imagen anterior
             if (fs.existsSync(pathViejo)) {
@@ -148,7 +158,7 @@ function subirPorTipo(tipo, id, nombreArchivo, res) {
                 });
             }
 
-            var pathViejo = './uploads/medicos/' + medico.img;
+            var pathViejo = '../uploads/medicos/' + medico.img;
 
             // Si existe, elimina la imagen anterior
             if (fs.existsSync(pathViejo)) {
